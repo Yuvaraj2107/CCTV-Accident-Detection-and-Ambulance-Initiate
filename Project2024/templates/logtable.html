@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Accident Log</title>
+    <link rel="icon" href="{{url_for('static',filename='CCTV1.png')}}" type="image/x-icon"/> 
+    <link rel="stylesheet" href="{{url_for('static', filename='css/bootstrap.min.css')}}" />
+    <script defer src="{{url_for('static', filename='js/bootstrap.bundle.min.js')}}"></script>
+
+    <!--<link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="{{url_for('static', filename='myfont/css/all.min.css')}}" />-->
+
+    <style>
+    body
+     {
+	background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+	background-size: 400% 400%;
+	animation: gradient 15s ease infinite;
+	height: 100vh;
+    }
+
+    @keyframes gradient
+     {
+        0% {
+            background-position: 0% 50%;
+        }
+        50% {
+            background-position: 100% 50%;
+        }
+        100% {
+            background-position: 0% 50%;
+        }
+    }
+
+    .tablcont{
+        margin-top: 150px;
+  
+    }
+    .searchtxt
+    {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      font-weight: 300;
+      font-style: italic;
+    }
+    .searchres
+    {
+      margin-left: 30px;
+      font-family:'Times New Roman', Times, serif;
+      font-weight: 600;
+      font-style:unset;
+      text-decoration:underline;
+    }
+
+
+    </style>
+    
+</head>
+<body>
+     <!-- Navbar start -->
+  <nav class="navbar  navbar-expand-lg fixed-top bg-dark">
+    <div class="container-fluid bg-dark">
+        <h3 style="color: white;">Accident Log</h3>
+        <form action="/home" method="GET">
+            <button class="btn btn-outline-light" type="submit">Home</button>
+          </form>    
+  </div>
+    </div>
+  </nav>
+      <!-- Navbar end -->
+        <div class="container-fluid tablcont">
+          <div>{% if msg %}
+            <h3 class="searchres">{{ msg }}</h3>
+            {% endif %}</div>
+            <div class="container-fluid d-flex justify-content-end searchdiv" style="margin-bottom: 20px;">
+            <form action="/Acctable" method="POST" class="d-flex">
+              
+              <div class="searchtxt"><h6>Search By DayDatetime</h6></div>
+                <input class="form-control me-2" type="text" name="search" placeholder="Search..." value="{{ search_term }}">
+                <button class="btn btn-success" type="submit">Search</button>
+            </form>
+        </div>
+        <table class="table table-bordered ">
+            <thead>
+                <tr>
+                  <th scope="col">ACCID</th>
+                  <th scope="col">DayDatetime</th>
+                  <th scope="col">location</th>
+                  <th scope="col">Hospital</th>
+                </tr>
+              </thead>
+              <tbody>
+                {% for row in table_data %}
+                <tr>
+                  <td>{{ row.ACCID}}</td>
+                  <td>{{ row.DayDatetime}}</td>
+                  <td>{{ row.location}}</td>
+                  <td>{{row.Hospital}}</td>
+                </tr>
+                {% endfor %}
+              </tbody>
+          </table>
+
+        </div>
+</body>

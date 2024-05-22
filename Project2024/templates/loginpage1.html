@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link rel="icon" href="{{url_for('static',filename='CCTV1.png')}}" type="image/x-icon"/> 
+    <link rel="stylesheet" href="{{url_for('static', filename='css/bootstrap.min.css')}}" />
+    <script defer src="{{url_for('static', filename='js/bootstrap.bundle.min.js')}}"></script>
+
+    <!--<link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="{{url_for('static', filename='myfont/css/all.min.css')}}" />-->
+    
+    <style>
+        body {
+	background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+	background-size: 400% 400%;
+	animation: gradient 15s ease infinite;
+	height: 100vh;
+}
+
+@keyframes gradient {
+	0% {
+		background-position: 0% 50%;
+	}
+	50% {
+		background-position: 100% 50%;
+	}
+	100% {
+		background-position: 0% 50%;
+	}
+}
+
+
+
+.logincard{
+    width: 375px;
+    height: 500px;
+    background-color: rgb(236, 244, 244);
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 85px;
+    border-radius: 20px;
+}
+.loginname{
+    padding-top: 20px;
+    text-align: center;
+    font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+
+}
+
+
+.forms
+{
+    margin-top: 60px;
+    margin-left: 45px;
+    margin-right: 45px;
+}
+.lgnbutton{
+    margin-top: 30px;
+   text-align: center;
+}
+
+
+.register #RegisterId{
+    margin-top: 40px;
+    text-decoration: none;
+    display: flex;
+    justify-content: center;
+    color: #0d6efd;
+}
+    </style>
+</head>
+<body>
+  <!-- Navbar start -->
+  <nav class="navbar navbar-expand-lg bg-dark">
+    <div class="container-fluid bg-dark">
+        <h3 style="color: white;">Control Room</h3>
+        <form action="/Admin">
+          <button class="btn btn-outline-light" type="submit">Admin</button>
+        </form>
+  </div>
+  </nav>
+      <!-- Navbar end -->
+      <!--login container-->
+       <div class="logincard">
+
+        <div class="loginname"><h1>Login</h1></div>
+
+       <div class="Inputform">
+        <form action="/login" method="POST" autocomplete="off" class="forms">
+
+            {% with messages = get_flashed_messages(with_categories=true) %}
+                        {% if messages %} {% for category,message in messages %}
+                        <div class="alert alert-{{category}}">{{message}}</div>
+                        {% endfor %} {% endif %} {% endwith %}
+                        
+          <div class="mb-3 form-group">
+            <label for="UsernameInput" class="form-label ">UserName</label>
+            <input type="text" name="name" class="form-control" required placeholder="Enter name" />
+            
+          </div>
+
+          <div class="mb-3 form-group">
+            <label for="PasswordInput" class="form-label">Password</label>
+            <input type="password" name="password" class="form-control" required placeholder="Enter password" />
+          </div>
+         
+          <div class="lgnbutton form-group d-grid col-7 mx-auto">
+          <button type="submit" class="btn btn-primary">LOGIN</button>
+        </div>
+       
+        </div>
+
+       <!--<div class="register form-group "> <a href="{{url_for('register')}}" id="RegisterId">Not a user? Register</a> </div>
+        </form>
+      </div>-->
+      <div class="register form-group "> <p id="RegisterId"> Not a user? contact Admin</p> </div>
+        </form>
+      </div>
+     <!--login container-->
+</body>
+</html>

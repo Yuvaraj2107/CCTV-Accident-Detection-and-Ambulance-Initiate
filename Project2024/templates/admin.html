@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin</title>
+    <link rel="icon" href="{{url_for('static',filename='CCTV1.png')}}" type="image/x-icon"/> 
+    <link rel="stylesheet" href="{{url_for('static', filename='css/bootstrap.min.css')}}" />
+    <script defer src="{{url_for('static', filename='js/bootstrap.bundle.min.js')}}"></script>
+<style>
+    body {
+	background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+	background-size: 400% 400%;
+	animation: gradient 15s ease infinite;
+	height: 100vh;
+}
+
+@keyframes gradient {
+	0% {
+		background-position: 0% 50%;
+	}
+	50% {
+		background-position: 100% 50%;
+	}
+	100% {
+		background-position: 0% 50%;
+	}
+}
+
+
+
+.admincard{
+    width: 375px;
+    height: 500px;
+    background-color: rgb(236, 244, 244);
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 150px;
+    border-radius: 20px;
+}
+.adminame{
+    padding-top: 20px;
+    text-align: center;
+    font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+
+}
+
+
+.forms
+{
+    margin-top: 60px;
+    margin-left: 45px;
+    margin-right: 45px;
+}
+.admbutton{
+    margin-top: 30px;
+   text-align: center;
+}
+
+
+.register #RegisterId{
+    margin-top: 40px;
+    text-decoration: none;
+    display: flex;
+    justify-content: center;
+    text-decoration-color: black;
+}
+
+
+
+</style>
+</head>
+<body>
+     <!-- Navbar start -->
+  <nav class="navbar  navbar-expand-lg fixed-top bg-dark">
+    <div class="container-fluid bg-dark">
+        <h3 style="color: white;">Control Room Admin</h3>         
+  </div>
+  </nav>
+      <!-- Navbar end -->
+      <!--ladmin container-->
+       <div class="admincard">
+
+        <div class="adminame"><h1>Admin</h1></div>
+
+       <div class="Inputform">
+
+        <form action="/Admin" method="POST" class="forms">
+
+            {% with messages = get_flashed_messages(with_categories=true) %}
+                        {% if messages %} {% for category,message in messages %}
+                        <div class="alert alert-{{category}}">{{message}}</div>
+                        {% endfor %} {% endif %} {% endwith %}
+
+
+          <div class="mb-3 form-group">
+            <label for="AdmUsernameInput" class="form-label ">UserName</label>
+            <input type="text" class="form-control"  name="name"  required placeholder="Enter name">
+          </div>
+
+          <div class="mb-3 form-group">
+            <label for="AdmPasswordInput" class="form-label">Password</label>
+            <input type="password" class="form-control"name="password" required placeholder="Enter password" >
+          </div>
+         
+          <div class="admbutton  d-grid col-7 mx-auto form-group">
+            <button type="submit" class="btn btn-primary ">Enter</button>
+          </div>
+
+        </form>
+
+        </div>
+
+        <div class="register"> <a href="{{url_for('loginpage')}}" id="RegisterId">Not an Admin?</a> </div>
+
+      </div>
+     <!--admin container-->
+</body>
+</html>

@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register</title>
+    <link rel="icon" href="{{url_for('static',filename='CCTV1.png')}}" type="image/x-icon"/> 
+    <link rel="stylesheet" href="{{url_for('static',filename='css/bootstrap.min.css')}}" />
+    <link rel="stylesheet" href="{{url_for('static',filename='myfont/css/all.min.css')}}" />
+    <script defer src="{{url_for('static', filename='js/bootstrap.bundle.min.js')}}"></script>
+
+    <style>
+        body {
+	background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+	background-size: 400% 400%;
+	animation: gradient 15s ease infinite;
+	height: 100vh;
+}
+
+@keyframes gradient {
+	0% {
+		background-position: 0% 50%;
+	}
+	50% {
+		background-position: 100% 50%;
+	}
+	100% {
+		background-position: 0% 50%;
+	}
+}
+
+
+
+.registercard{
+    width: 375px;
+    height: 550px;
+    background-color: rgb(236, 244, 244);
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 75px;
+    border-radius: 20px;
+}
+.registercard h1{
+    padding-top: 20px;
+    text-align: center;
+    font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+
+}
+
+
+.forms
+{
+    margin-top: 20px;
+    margin-left: 45px;
+    margin-right: 45px;
+}
+.rgstbutton{
+    margin-top: 30px;
+   text-align: center;
+}
+
+
+.register #RegisterId{
+    margin-top: 20px;
+    text-decoration: none;
+    display: flex;
+    justify-content: center;
+    text-decoration-color: black;
+}
+    </style>
+</head>
+<body>
+  <!-- Navbar start -->
+  <nav class="navbar  bg-dark">
+    <div class="container-fluid bg-dark">
+        <h3 style="color: white;">Control Room</h3>
+        <form action="/home">
+          <button class="btn btn-outline-light" type="submit">Home</button>
+        </form>
+    </div>
+  </nav>
+      <!-- Navbar end -->
+      <!--regitser container-->
+       <div class="registercard">
+
+        <div class="registername"><h1>Register</h1></div>
+
+       <div class="Inputform">
+        <form action="{{ url_for('register') }}" method="POST" class="forms">
+
+            {% with errors = get_flashed_messages(with_categories=['error']) %}
+                    {% if errors %} {% for catg,msg in errors %}
+                    <div id="alrt" class="alert alert-{{category}}">{{msg}}</div>
+                    {% endfor %} {% endif %} {% endwith %}
+
+          <div class="mb-3">
+            <label for="RUsernameInput" class="form-label">UserName</label>
+            <input type="text" class="form-control" name="name" required placeholder="Enter name" id="RUsernameInput"/>
+            
+          </div>
+          <div class="mb-3 form-group">
+            <label for="REmailInput" class="form-label">Email</label>
+            <input type="text" class="form-control" name="address" required placeholder="Enter email"  id="REmailInput"/>
+            
+          </div>
+
+          <div class="mb-3 form-group">
+            <label for="RPasswordInput" class="form-label">Password</label>
+            <input type="password" class="form-control" name="passwords" required placeholder="Enter password" id="RPasswordInput">
+          </div>
+         
+          <div class="rgstbutton form-group d-grid col-7 mx-auto">
+          <button type="submit" class="btn btn-primary ">Register</button>
+        </div>
+        </form>
+        </div>
+
+       <div class="register"> <a href="{{url_for('loginpage')}}" id="RegisterId">Already have an Account?</a> </div>
+
+      </div>
+     <!--register container-->
+</body>
+</html>
